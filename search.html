@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Search - Movie Magic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-[#1A1A26] text-white">
+    <!-- Search Header -->
+    <header class="fixed top-0 left-0 right-0 bg-[#1A1A26]/60 backdrop-blur-md z-10">
+        <div class="p-4 flex items-center gap-3">
+            <a href="index.html" class="p-2 hover:bg-white/10 rounded-full">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <div class="flex-1 relative">
+                <input type="search" 
+                    placeholder="Search movies..." 
+                    class="w-full bg-[#28303D] py-2 pl-10 pr-4 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Search Filters -->
+        <div class="px-4 pb-3 flex gap-2 overflow-x-auto hide-scrollbar">
+            <button class="px-4 py-1 bg-purple-600 rounded-full text-sm whitespace-nowrap">All</button>
+            <button class="px-4 py-1 bg-[#28303D] rounded-full text-sm whitespace-nowrap hover:bg-[#343B4A]">Movies</button>
+            <button class="px-4 py-1 bg-[#28303D] rounded-full text-sm whitespace-nowrap hover:bg-[#343B4A]">TV Shows</button>
+            <button class="px-4 py-1 bg-[#28303D] rounded-full text-sm whitespace-nowrap hover:bg-[#343B4A]">Action</button>
+            <button class="px-4 py-1 bg-[#28303D] rounded-full text-sm whitespace-nowrap hover:bg-[#343B4A]">Comedy</button>
+            <button class="px-4 py-1 bg-[#28303D] rounded-full text-sm whitespace-nowrap hover:bg-[#343B4A]">Drama</button>
+        </div>
+    </header>
+
+    <!-- Search Results -->
+    <main class="pt-28 pb-20 px-4">
+        <!-- Recent Searches -->
+        <section class="mb-8" id="recentSearches">
+            <h2 class="text-lg font-semibold mb-4">Recent Searches</h2>
+            <div class="space-y-4">
+                <!-- Recent search items will be inserted here -->
+            </div>
+        </section>
+
+        <!-- Search Results Grid -->
+        <section id="searchResults" class="hidden">
+            <h2 class="text-lg font-semibold mb-4">Search Results</h2>
+            <div class="grid grid-cols-2 gap-4" id="resultsGrid">
+                <!-- Search results will be inserted here -->
+            </div>
+        </section>
+
+        <!-- No Results State -->
+        <div id="noResults" class="hidden text-center py-12">
+            <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="text-gray-400">No results found</p>
+        </div>
+    </main>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bottom-0 bg-[#1A1A26]/60 backdrop-blur-sm p-4 flex justify-around items-center border-t border-gray-800/30 safe-area-inset-bottom">
+        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+        </a>
+        <a href="search.html" class="flex flex-col items-center text-purple-500">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+        </a>
+        <a href="downloads.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 10V16M12 16L9 13M12 16L15 13M3 17V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17Z"/>
+            </svg>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+        </a>
+    </nav>
+
+    <script src="js/data.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html> 

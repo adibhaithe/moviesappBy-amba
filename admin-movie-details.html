@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Movie Details Management - Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-[--bg-primary] text-[--text-primary]">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-[--nav-bg] backdrop-blur-md z-10">
+        <div class="p-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="admin.html" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </a>
+                <h1 class="text-xl font-semibold">Movie Details Management</h1>
+            </div>
+            <button id="saveChanges" 
+                    class="px-4 py-2 bg-green-600 rounded-lg hover:bg-green-700 transition-colors">
+                Save Changes
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-20 pb-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Movie Preview -->
+            <div class="bg-[--card-bg] rounded-xl p-6 mb-6">
+                <div class="relative aspect-video rounded-lg overflow-hidden mb-4">
+                    <img id="movieBackdrop" class="w-full h-full object-cover" alt="Movie Backdrop">
+                    <input type="file" id="backdropUpload" accept="image/*" class="hidden">
+                    <button id="editBackdrop" 
+                            class="absolute top-4 right-4 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                        </svg>
+                    </button>
+                </div>
+                <h2 id="movieTitle" class="text-2xl font-bold mb-2"></h2>
+                <div class="flex items-center gap-2 text-sm text-[--text-secondary]">
+                    <span id="movieYear"></span>
+                    <span>•</span>
+                    <span id="movieDuration"></span>
+                    <span>•</span>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <span id="movieRating" class="ml-1"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movie Details Form -->
+            <form id="movieDetailsForm" class="space-y-8">
+                <!-- Media Sources -->
+                <div class="bg-[--card-bg] rounded-xl p-6 space-y-4">
+                    <h3 class="text-lg font-semibold text-purple-400">Media Sources</h3>
+                    <div class="grid gap-4">
+                        <div>
+                            <label class="block text-sm text-[--text-secondary] mb-1">Streaming URL</label>
+                            <input type="url" name="streamUrl" 
+                                   class="w-full bg-[--input-bg] rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
+                                   placeholder="https://example.com/stream">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-[--text-secondary] mb-1">Download URL</label>
+                            <input type="url" name="downloadUrl" 
+                                   class="w-full bg-[--input-bg] rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
+                                   placeholder="https://example.com/download">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-[--text-secondary] mb-1">Trailer URL</label>
+                            <input type="url" name="trailerUrl" 
+                                   class="w-full bg-[--input-bg] rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
+                                   placeholder="https://example.com/trailer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quality & Size -->
+                <div class="bg-[--card-bg] rounded-xl p-6 space-y-4">
+                    <h3 class="text-lg font-semibold text-purple-400">Quality & Size</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-[--text-secondary] mb-1">Video Quality</label>
+                            <select name="videoQuality" 
+                                    class="w-full bg-[--input-bg] rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500">
+                                <option value="4K">4K Ultra HD</option>
+                                <option value="1080p">1080p Full HD</option>
+                                <option value="720p">720p HD</option>
+                                <option value="480p">480p SD</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-[--text-secondary] mb-1">File Size</label>
+                            <input type="text" name="fileSize" 
+                                   class="w-full bg-[--input-bg] rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
+                                   placeholder="2.3 GB">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="bg-[--card-bg] rounded-xl p-6 space-y-4">
+                    <h3 class="text-lg font-semibold text-purple-400">Languages</h3>
+                    <div class="grid gap-4">
+                        <div>
+                            <label class="block text-sm text-[--text-secondary] mb-1">Audio Languages</label>
+                            <input type="text" name="audioLanguages" 
+                                   class="w-full bg-[--input-bg] rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
+                                   placeholder="English, Spanish, French">
+                            <p class="text-xs text-[--text-secondary] mt-1">Separate languages with commas</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-[--text-secondary] mb-1">Subtitle Languages</label>
+                            <input type="text" name="subtitleLanguages" 
+                                   class="w-full bg-[--input-bg] rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
+                                   placeholder="English, Spanish, French">
+                            <p class="text-xs text-[--text-secondary] mt-1">Separate languages with commas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Features -->
+                <div class="bg-[--card-bg] rounded-xl p-6 space-y-4">
+                    <h3 class="text-lg font-semibold text-purple-400">Additional Features</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" name="hasSubtitles" 
+                                   class="w-4 h-4 rounded text-purple-600 focus:ring-purple-500">
+                            <span class="text-sm text-[--text-secondary]">Includes Subtitles</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" name="isDubbed" 
+                                   class="w-4 h-4 rounded text-purple-600 focus:ring-purple-500">
+                            <span class="text-sm text-[--text-secondary]">Includes Dubbed Audio</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" name="isFeatured" 
+                                   class="w-4 h-4 rounded text-purple-600 focus:ring-purple-500">
+                            <span class="text-sm text-[--text-secondary]">Set as Featured Movie</span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/movie-details-admin.js"></script>
+    <script>
+        // Initialize page with movie data from URL parameter
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = urlParams.get('id');
+            if (movieId) {
+                loadMovieDetails(movieId);
+            }
+        });
+    </script>
+</body>
+</html> 

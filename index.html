@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Movie Magic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-[#1A1A26] text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full bottom-0 bg-[#1A1A26]/60 backdrop-blur-sm p-4 flex justify-around items-center border-t border-gray-800/30 safe-area-inset-bottom">
+        <a href="index.html" class="flex flex-col items-center text-purple-500">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+        </a>
+        <a href="search.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+        </a>
+        <a href="downloads.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 10V16M12 16L9 13M12 16L15 13M3 17V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17Z"/>
+            </svg>
+        </a>
+        <a href="saved.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 4a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 20V4z"/>
+            </svg>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pb-20 h-screen overflow-y-auto">
+        <!-- Featured Movie -->
+        <section class="relative h-[70vh] animate-item fade-in">
+            <div class="absolute inset-0">
+                <div id="featuredTeaser" class="w-full h-full">
+                    <!-- Fallback image before video loads -->
+                    < src="movies app 2.png" alt="Avatar: The Way of Water" 
+                         class="w-full h-full object-cover">
+                    <video 
+                        class="absolute inset-0 w-full h-full object-cover" 
+                        muted 
+                        loop
+                        playsinline
+                        autoplay
+                    >
+                        <source src="avtar.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A26] to-transparent"></div>
+            </div>
+            <div class="absolute bottom-0 p-6 space-y-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-yellow-400 desc-animate">★</span>
+                    <span class="desc-animate">7.6</span>
+                    <span>•</span>
+                    <div class="flex gap-2">
+                        <span class="text-sm desc-animate">Action</span>
+                        <span>•</span>
+                        <span class="text-sm desc-animate">Adventure</span>
+                        <span>•</span>
+                        <span class="text-sm desc-animate">Fantasy</span>
+                    </div>
+                </div>
+                <h1 class="text-4xl font-bold title-animate">Avatar: The Way of Water</h1>
+                <button id="playButton" class="px-8 py-3 bg-purple-600 rounded-lg font-semibold flex items-center gap-2 hover:bg-purple-700 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    Play Now
+                </button>
+            </div>
+        </section>
+
+        <!-- Continue Watching -->
+        <section class="p-6 animate-item fade-up">
+            <h2 class="text-xl font-bold mb-4 title-animate">Continue Watching</h2>
+            <div class="continue-watching-list flex gap-4 overflow-x-auto stagger-children">
+                <!-- ... items ... -->
+            </div>
+        </section>
+
+        <!-- Trending Now -->
+        <section class="p-6 animate-item fade-up">
+            <h2 class="text-xl font-bold mb-4 title-animate">Trending Now</h2>
+            <div class="trending-list grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 stagger-children">
+                <!-- Movies will be loaded dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/utils/thumbnail-manager.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/video-player.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/scroll-animations.js"></script>
+</body>
+</html> 
